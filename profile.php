@@ -35,9 +35,9 @@
     </ul>
     <form class="navbar-form navbar-left">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Enter Username">
+        <input type="text" id="inputName" class="form-control" placeholder="Enter Username">
       </div>
-      <button type="submit" class="btn btn-default">Submit</button>
+      <button type="submit" onclick="searchUser(document.getElementById('inputName').value)" class="btn btn-default">Submit</button>
     </form>
     <a class="btn btn-primary navbar-btn navbar-right" href="logout.php">Log Out</a>
     <?php 
@@ -77,7 +77,13 @@
 			if(mysqli_num_rows($result) == 1){
 				$row = mysqli_fetch_array($result);
                 $follower_count = $row['follower_count'];
-                echo "<h4 id='followers'>Followers: " .$follower_count . "</h4>";
+                echo "<h4 id=\"followers\">Followers: " .$follower_count . "</h4>
+                <div id=\"followersModal\" class=\"modal\">
+  					<div class=\"modal-content\">
+    					<span class=\"close\">&times;</span>
+    					<h4><b>People who follow you</b></h4>
+ 		 			</div>
+				</div>";
             }
 		}				
 		 else {
@@ -102,7 +108,7 @@
 		mysqli_close($db);
  
   	?>
-  	<a href="" class="btn btn-primary">Edit Profile</a>
+  	<a href="" class="btn btn-primary" id="editProfileBtn">Edit Profile</a>
     <form class="addimage" action="" method="post">
         <input type="text" class="form-control enterurl" placeholder="Enter Image URL" name="url" autofocus required>
       <br />
@@ -116,8 +122,6 @@
     <div class="row">
         <?php
         require_once('config.php');
-        //$db = mysqli_connect('localhost','root','KISHOR@cp0220','clonestagram')
-			//or die('Error connecting to MYSQL server.');
 		$db = connectDatabase();
 		
 		//Show photos
@@ -156,31 +160,11 @@
 <footer class="footer">
     <span class="text-muted">Made by Rishabh Chitlangia and Rohith Srivathsav</span>
 </footer>
-<!--
-<?php
-	include 'config.php';
-    if(isset($_POST['add'])){
-        //$db = mysqli_connect('localhost','root','KISHOR@cp0220','clonestagram')
-			//or die('Error connecting to MYSQL server.');
-		$db = connectDatabase();
-
-		$url = mysqli_real_escape_string($db, $_REQUEST['url']);
-		$sql = "INSERT INTO photos(user_id, image_url) VALUES($userid,'$url')" ;
-		$result = mysqli_query($db, $sql);
-        if(mysqli_affected_rows($db) > 0) {
-            header("Location: profile.php");
-		}
-		 else {
-		    	echo "ERROR: Not able to execute $sql. " . mysqli_error($db). '<br />'. '<br />';
-		}
-		mysqli_close($db);
-			
-	}
-?>
--->
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+     <script src="js/modal.js"></script>
+     <script src="js/search.js"></script>
 </body>
 </html>

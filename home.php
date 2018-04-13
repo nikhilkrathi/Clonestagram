@@ -35,9 +35,9 @@
     </ul>
     <form class="navbar-form navbar-left">
       <div class="form-group">
-        <input type="text" class="form-control" name ="finduser" placeholder="Enter Username">
+        <input type="text" id="inputName" class="form-control" name ="finduser" placeholder="Enter Username">
       </div>
-      <button type="submit" class="btn btn-default">Submit</button>
+      <button type="submit" onclick="searchUser(document.getElementById('inputName').value)" class="btn btn-default">Submit</button>
     </form>
     <a class="btn btn-primary navbar-btn navbar-right" href="logout.php">Log Out</a>
     <?php 
@@ -68,5 +68,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/search.js"></script>
 </body>
 </html>
