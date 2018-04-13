@@ -1,0 +1,142 @@
+html, body {
+    height: 100%;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+h6 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+}
+
+#stage {
+    background: url(stage.jpg) center center no-repeat;
+    background-size: cover;
+    color: white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#stage-caption {
+    font-size: 2rem;
+    font-weight: 200;
+    max-width: 70rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#stage-caption h1 {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 7rem;
+}
+.navbar-header {
+    margin-left:5px;
+    width:90%;
+}
+.navbar-right {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top:30px;
+    float:right;
+}
+.navbar-left {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.footer {
+    line-height: 40px;
+    text-align: center;
+}
+
+.signup{
+   background: url(stage.jpg) center center no-repeat;
+    background-size: cover;
+    color: white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.form-signup {
+    max-width: 40rem;
+    margin: 0 auto;
+    text-align: center;
+}
+.form-signup h2 {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 5rem;    
+}
+
+.card {
+    max-width: 120rem;
+    margin: 0 auto;
+    height: 90%;
+}
+
+.card h2 {
+    text-transform: uppercase;
+}
+.addimage, .addbtn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.enterurl {
+    margin-bottom: 20px;
+}
+
+.checkbox-inline {
+    font-size: 20px;
+}
+
+.headermessage {
+  margin: 19px;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+}
+.image-block {
+    border: 3px solid white ;
+    background-color: black;
+    padding: 0px;    
+    margin: 0px;
+    height:300px;
+    text-align: center;
+    vertical-align: bottom;
+}
+.image-block p {
+    width: 100%;
+    height: 100%;
+    font-weight: normal;
+    font-size: 12px;
+    padding-top: 250px;
+    color: #fff;
+}
+.image-block:hover p {
+    background-color: rgba(3,3,3,0.5);    
+}
+
+.container-full {
+    height: 90%;
+}
+.image {
+    width:40%;
+    height: auto;
+    margin-left: 30%;
+}
+
+.like {
+    font-size: 20px;
+    margin-left: 30%;
+}
