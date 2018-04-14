@@ -141,6 +141,11 @@ h6 {
     margin-left: 30%;
 }
 
+.modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -161,7 +166,7 @@ h6 {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 40%;
+    width: 30%;
 }
 
 /* The Close Button */
@@ -178,3 +183,42 @@ h6 {
     text-decoration: none;
     cursor: pointer;
 }
+
+#followers:hover, #following:hover  {
+	cursor: pointer;
+	font-weight:bold;
+}
+
+table {
+    border-collapse: collapse;
+    width:100%;
+}
+
+table, td, th {    
+    border-bottom: 2px solid #E6E6E6;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+td {
+    padding: 5px;
+    font-weight: bold;
+}
+th {
+	padding-top:10px;
+	padding-bottom:10px;
+	text-align: center;
+	font-size: 18px;
+	font-family: 'Roboto', sans-serif;
+}
+
+tr {
+	background-color: #FFFFFF
+}
+
+th {
+    background-color: #FFFFFF;
+    color: white;
+}
+
+
+

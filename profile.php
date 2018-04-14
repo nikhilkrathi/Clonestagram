@@ -1,7 +1,7 @@
 <?php
     session_start();
    	$username = $_SESSION['username'];
-    $userid = $_SESSION[userid];
+    $userid = $_SESSION['userid'];
     if($username=="") {
         session_destroy();
         header("Location: signin.php");
@@ -37,7 +37,7 @@
       <div class="form-group">
         <input type="text" id="inputName" class="form-control" placeholder="Enter Username">
       </div>
-      <button type="submit" onclick="searchUser(document.getElementById('inputName').value)" class="btn btn-default">Submit</button>
+      <button type="submit" onclick="" class="btn btn-default">Submit</button>
     </form>
     <a class="btn btn-primary navbar-btn navbar-right" href="logout.php">Log Out</a>
     <?php 
@@ -77,11 +77,13 @@
 			if(mysqli_num_rows($result) == 1){
 				$row = mysqli_fetch_array($result);
                 $follower_count = $row['follower_count'];
-                echo "<h4 id=\"followers\">Followers: " .$follower_count . "</h4>
+                $followersModal = "followersModal";
+                $followers = "followers";
+                echo "<h4 id=\"followers\" onclick='displayModal(\"$followersModal\", \"$followers\")'>Followers: " .$follower_count . "</h4>
                 <div id=\"followersModal\" class=\"modal\">
   					<div class=\"modal-content\">
-    					<span class=\"close\">&times;</span>
-    					<h4><b>People who follow you</b></h4>
+    					<span id=\"close1\" class=\"close\">&times;</span>
+    					<table id=\"followersTable\"></table>
  		 			</div>
 				</div>";
             }
@@ -98,7 +100,16 @@
 			if(mysqli_num_rows($result) == 1){
 				$row = mysqli_fetch_array($result);
                 $following_count = $row['following_count'];
-                echo "<h4 id='following'>Following: " .$following_count . "</h4>";
+                $followingModal = "followingModal";
+                $following = "following";
+                
+                echo "<h4 id=\"following\" onclick='displayModal(\"$followingModal\", \"$following\")'>Following: " .$following_count . "</h4>
+                <div id=\"followingModal\" class=\"modal\">
+  					<div class=\"modal-content\">
+    					<span id=\"close2\" class=\"close\">&times;</span>
+    					<table id=\"followingTable\"></table>
+ 		 			</div>	
+				</div>";
             }
 		}				
 		 else {
@@ -164,7 +175,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-     <script src="js/modal.js"></script>
-     <script src="js/search.js"></script>
+     <script src="modal.js"></script>
 </body>
 </html>
