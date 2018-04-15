@@ -33,12 +33,14 @@
       <li class="active"><a href="#">Home</a></li>
       <li><a href="#">Search by Hashtag</a></li>
     </ul>
-    <form class="navbar-form navbar-left">
+     <form class="navbar-form navbar-left" action="" method="post">
       <div class="form-group">
-        <input type="text" id="inputName" class="form-control" name ="finduser" placeholder="Enter Username">
+        <input type="text" name="usearch" id="inputName" class="form-control" placeholder="Enter Username">
       </div>
-      <button type="submit" onclick="searchUser(document.getElementById('inputName').value)" class="btn btn-default">Submit</button>
-    </form>
+     <button type="submit" class="btn btn-default" name="search">Search</button>
+     
+</form>
+
     <a class="btn btn-primary navbar-btn navbar-right" href="logout.php">Log Out</a>
     <?php 
         $username = $_SESSION['username'];
@@ -63,11 +65,41 @@
 <footer class="footer">
     <span class="text-muted">Made by Rishabh Chitlangia and Rohith Srivathsav</span>
 </footer>
+   <?php
+        require_once('config.php');
+		$db = connectDatabase();
+	if(isset($_POST['search'])){
+	
+		//$db = mysqli_connect('localhost','root','KISHOR@cp0220','clonestagram')
+			//or die('Error connecting to MYSQL server.');
+		
+		$usearch = mysqli_real_escape_string($db, $_REQUEST['usearch']);
+		$sql = "SELECT * FROM users WHERE username = '$usearch'" ;
+		$result = mysqli_query($db, $sql);
+        if($result){
+			if(mysqli_num_rows($result) == 1){
+				$row = mysqli_fetch_array($result);
+			$searchUserid = $row['id'];
+                 $_SESSION[searchUserid] = $searchUserid;
+                 $_SESSION['searchUsername'] = $usearch;
+                 $_SESSION['searchFullname'] = $row['fullname'];
+                header("Location: userprofile.php");
+                }
+		else 
+   			echo "ERROR: Unable to execute $sql. " . mysqli_error($db). '<br />'. '<br />';
+   	
+   	}
+   	
+   }
+	
+		mysqli_close($db);
+	
+?>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/search.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>

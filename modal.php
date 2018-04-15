@@ -1,7 +1,8 @@
 <?php
 require_once('config.php');
 session_start();
-   	$username = $_SESSION['username'];
+    $searchUsername = $_SESSION['searchUsername'];
+    $username = $_SESSION['username'];
     $userid = $_SESSION['userid'];
     if($username=="") {
         session_destroy();
