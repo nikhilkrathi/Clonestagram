@@ -176,7 +176,7 @@
 			if(mysqli_num_rows($result) == 1){
 				$row = mysqli_fetch_array($result);
 			$searchUserid = $row['id'];
-                 $_SESSION[searchUserid] = $searchUserid;
+                 $_SESSION['searchUserid'] = $searchUserid;
                  $_SESSION['searchUsername'] = $usearch;
                  $_SESSION['searchFullname'] = $row['fullname'];
                 header("Location: userprofile.php");
@@ -202,6 +202,5 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
      <script src="js/modal.js"></script>
-     <script src="js/search.js"></script>
 </body>
 </html>
