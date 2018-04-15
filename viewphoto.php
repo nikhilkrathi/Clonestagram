@@ -52,9 +52,9 @@
  		require_once('config.php');
 		$db = connectDatabase();
 		
-		//Display Image
-		$sql = "SELECT image_url FROM photos WHERE id = $photoid";
-		$result = mysqli_query($db, $sql);
+	//Display Image
+	$sql = "SELECT image_url FROM photos WHERE id = $photoid";
+	$result = mysqli_query($db, $sql);
         if($result) {
             $row = mysqli_fetch_array($result);
                 $url = $row['image_url'];
@@ -62,16 +62,25 @@
         
         //Show number of likes
         $sql2 = "SELECT count(*) AS total_likes FROM likes WHERE photo_id=$photoid";
-		$result2 = mysqli_query($db, $sql2);
+	$result2 = mysqli_query($db, $sql2);
         if($result2) {
             $row2 = mysqli_fetch_array($result2);
                 $count = $row2['total_likes'];
         }
         
+        //Get Uploader name
+        $sql3 = "SELECT username FROM users WHERE id IN (SELECT user_id FROM photos WHERE id='$photoid')";
+	$result3 = mysqli_query($db, $sql3);
+        if($result3) {
+            $row3 = mysqli_fetch_array($result3);
+                $uploader = $row3['username'];
+        }
+        
+        
         
         echo "<table class=\"imgTable\">
 			<tr>
-				<td>" . $username . "</td>
+				<td>" . $uploader . "</td>
 			</tr>
 			<tr>
 				<td><img src='".$url."' class=\"tableImg\"></td>
