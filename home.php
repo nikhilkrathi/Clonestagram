@@ -58,16 +58,15 @@
       </li>
     </ul>
   </div>
-</div>   
-
-<footer class="footer">
-    <span class="text-muted">Made by Rishabh Chitlangia and Rohith Srivathsav</span>
-</footer>
+  <div class="card-body" id="feedDiv">
+  </div>
+</div> 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/search.js"></script>
+    <script src="js/feed.js"></script>
 </body>
 </html>

@@ -50,8 +50,6 @@
 <div class="container-full">
  <?php
  		require_once('config.php');
-        //$db = mysqli_connect('localhost','root','KISHOR@cp0220','clonestagram')
-			//or die('Error connecting to MYSQL server.');
 		$db = connectDatabase();
 		
 		//Display Image
@@ -60,35 +58,37 @@
         if($result) {
             $row = mysqli_fetch_array($result);
                 $url = $row['image_url'];
-                echo "<img src='".$url."' class='image'>";   
         }
         
         //Show number of likes
-        $sql = "SELECT count(*) AS total_likes FROM likes WHERE photo_id=$photoid";
-		$result = mysqli_query($db, $sql);
-        if($result) {
-            $row = mysqli_fetch_array($result);
-                $count = $row['total_likes'];
-                echo "<p class='like'>".$count." likes</p>";   
+        $sql2 = "SELECT count(*) AS total_likes FROM likes WHERE photo_id=$photoid";
+		$result2 = mysqli_query($db, $sql2);
+        if($result2) {
+            $row2 = mysqli_fetch_array($result2);
+                $count = $row2['total_likes'];
         }
+        
+        
+        echo "<table class=\"imgTable\">
+			<tr>
+				<td>" . $username . "</td>
+			</tr>
+			<tr>
+				<td><img src='".$url."' class=\"tableImg\"></td>
+			</tr>
+			<tr>
+				<td>".$count." likes</td>
+			</tr> 
+			<tr>
+				<td><button>Like</button></td>
+			</tr>  
+        
+        </table>";
+        
+        
         
         mysqli_close($db);
         ?>
- <!--<?php
-        include 'config.php';
-        //$db = mysqli_connect('localhost','root','KISHOR@cp0220','clonestagram')
-			//or die('Error connecting to MYSQL server.');
-		$db = connectDatabase();
-		$sql = "SELECT count(*) AS total_likes FROM likes WHERE photo_id=$photoid";
-		$result = mysqli_query($db, $sql);
-        if($result) {
-            $row = mysqli_fetch_array($result);
-                $count = $row['total_likes'];
-                echo "<p class='like'>".$count." likes</p>";   
-        }
-        mysqli_close($db);
-        ?>
--->
     </div>
     
 <footer class="footer">

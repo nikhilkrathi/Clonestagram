@@ -29,10 +29,6 @@ function displayModal(modalId, textId){
 	}
 }
 
-function loadTable(){
-	
-}
-
 function getFollowersData(){
 	var xhttp;
 	xhttp = new XMLHttpRequest();
