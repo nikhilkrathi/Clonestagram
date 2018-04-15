@@ -37,7 +37,6 @@
       <div class="form-group">
         <input type="text" name="usearch" id="inputName" class="form-control" placeholder="Enter Username">
       </div>
-      <!-- <button type="submit" onclick="" class="btn btn-default">Submit</button> !-->
       <button type="submit" class="btn btn-default" name="search">Search</button>
     </form>
     <a class="btn btn-primary navbar-btn navbar-right" href="logout.php">Log Out</a>
@@ -127,10 +126,10 @@
       <button type="submit" class="btn btn-default addbtn" name="add">Add Photo</button>
   </form>
 
-<div class="container-fluid">
-    <div class="row text-center">
-        <h3 class="headermessage">Uploads</h3>
-    </div>
+	<div class="container-fluid">
+		<div class="row text-center">
+		    <h3 class="headermessage">Posts</h3>
+		</div>
     <div class="row">
         <?php
         require_once('config.php');
@@ -145,7 +144,11 @@
                 $row = mysqli_fetch_array($result);
                 $url = $row['image_url'];
                 $photoid = $row['id'];
-                echo "<a href='viewphoto.php?id=".$photoid."' title=''><div class='image-block col-sm-4' style='background: url(".$url.") no-repeat center top;background-size:cover;'><p>Click To View</p></div></a>";
+                echo "<a href='viewphoto.php?id=".$photoid."' title=''>
+                <div class='image-block col-sm-4' style='background: url(".$url.") no-repeat center top;background-size:cover;'>
+                <p>Click To View</p>
+                </div>
+                </a>";
             }
         }
         
@@ -194,13 +197,11 @@
   </div>
 </div>
 
-<footer class="footer">
-    <span class="text-muted">Made by Rishabh Chitlangia and Rohith Srivathsav</span>
-</footer
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-     <script src="modal.js"></script>
+     <script src="js/modal.js"></script>
+     <script src="js/search.js"></script>
 </body>
 </html>
