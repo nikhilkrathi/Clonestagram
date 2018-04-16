@@ -83,7 +83,7 @@ function addLikes(count, photoid){
 		if(this.readyState == 4 && this.status == 200) {
 			var response = JSON.parse(this.responseText);
 			if(response["Success"] == "True") {
-				alert("Record Updated Successfully!");
+				//alert("Record Updated Successfully!");
 			}
 			else {
 				alert("Update Failed.\nError: " + response["Error"]);
