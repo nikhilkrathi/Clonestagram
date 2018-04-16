@@ -1,8 +1,6 @@
 var record;
 function follow() {
-	
-	
-	//alert("clicked");
+
 }
 
 function getFollowingData() {

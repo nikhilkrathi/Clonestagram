@@ -165,17 +165,23 @@
 			}
         }
         
+
+	
+		mysqli_close($db);
+	
+?>
+
+<?php
+	require_once('config.php');
 	if(isset($_POST['search'])){
-		//$db = mysqli_connect('localhost','root','KISHOR@cp0220','clonestagram')
-			//or die('Error connecting to MYSQL server.');
-		
+		$db = connectDatabase();
 		$usearch = mysqli_real_escape_string($db, $_REQUEST['usearch']);
 		$sql = "SELECT * FROM users WHERE username = '$usearch'" ;
 		$result = mysqli_query($db, $sql);
         if($result){
 			if(mysqli_num_rows($result) == 1){
 				$row = mysqli_fetch_array($result);
-			$searchUserid = $row['id'];
+				$searchUserid = $row['id'];
                  $_SESSION[searchUserid] = $searchUserid;
                  $_SESSION['searchUsername'] = $usearch;
                  $_SESSION['searchFullname'] = $row['fullname'];
@@ -186,9 +192,7 @@
    	
    	}
    }
-	
-		mysqli_close($db);
-	
+
 ?>
 
         
@@ -202,6 +206,5 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
      <script src="js/modal.js"></script>
-     <script src="js/search.js"></script>
 </body>
 </html>
