@@ -69,9 +69,6 @@
         require_once('config.php');
 		$db = connectDatabase();
 	if(isset($_POST['search'])){
-	
-		//$db = mysqli_connect('localhost','root','KISHOR@cp0220','clonestagram')
-			//or die('Error connecting to MYSQL server.');
 		
 		$usearch = mysqli_real_escape_string($db, $_REQUEST['usearch']);
 		$sql = "SELECT * FROM users WHERE username = '$usearch'" ;
@@ -101,7 +98,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/search.js"></script>
     <script src="js/feed.js"></script>
 </body>
 </html>

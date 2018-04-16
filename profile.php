@@ -165,16 +165,24 @@
 			}
         }
         
+
+	
+		mysqli_close($db);
+	
+?>
+
+<?php
+	require_once('config.php');
 	if(isset($_POST['search'])){
-		//$db = mysqli_connect('localhost','root','KISHOR@cp0220','clonestagram')
-			//or die('Error connecting to MYSQL server.');
-		
+		$db = connectDatabase();
 		$usearch = mysqli_real_escape_string($db, $_REQUEST['usearch']);
 		$sql = "SELECT * FROM users WHERE username = '$usearch'" ;
 		$result = mysqli_query($db, $sql);
         if($result){
 			if(mysqli_num_rows($result) == 1){
 				$row = mysqli_fetch_array($result);
+				$searchUserid = $row['id'];
+                 $_SESSION[searchUserid] = $searchUserid;
 			$searchUserid = $row['id'];
                  $_SESSION['searchUserid'] = $searchUserid;
                  $_SESSION['searchUsername'] = $usearch;
@@ -186,9 +194,7 @@
    	
    	}
    }
-	
-		mysqli_close($db);
-	
+
 ?>
 
         

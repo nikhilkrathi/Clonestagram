@@ -33,10 +33,7 @@
         
     </form>
 </div> <!-- /container -->
-<footer class="footer">
-    <span class="text-muted">Made by Rishabh Chitlangia and Rohith Srivathsav</span>
-</footer>
-    
+
 <?php
 	require_once('config.php');
 	if(isset($_POST['proceed'])){

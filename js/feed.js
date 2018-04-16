@@ -16,7 +16,10 @@ function getFeedData(){
 function createFeedCards(){
 	var div = document.getElementById("feedDiv");
 	var data = getFeedData();
-	for(var i=0; i<data.username.length; i++){
+	var count = 0;
+	//for(var i=0; i<data.username.length; i++){
+	for(var i in data.username){
+		var photoid = data.photoid[count];
 		var table = document.createElement("TABLE");
 		table.setAttribute("class", "imgTableFeed");
 		
@@ -53,22 +56,84 @@ function createFeedCards(){
 		var tableDataLikeButton = document.createElement("td");
 		var tableLikeButton = document.createElement("BUTTON");
 		var buttonText = document.createTextNode("Like");
-		tableLikeButton.setAttribute("id", "likeButton_" + i);
+		var liked = likedOrNot(photoid);
+		if(liked.likedOrNot == 1){
+			tableLikeButton.disabled = true;
+		}
+		tableLikeButton.setAttribute("id", "likeButton_" + count);
 		tableLikeButton.setAttribute("align", "left");
 		tableLikeButton.setAttribute("value", "LIKE");
+		tableLikeButton.onclick = function(count_f, photoid_f) { 
+   			return function() { 
+      			addLikes.call(this, count_f, photoid_f); 
+      			}; 
+   			}(count, photoid);
 		table.appendChild(tableRowLikeButton);
 		tableRowLikeButton.appendChild(tableDataLikeButton);
 		tableDataLikeButton.appendChild(tableLikeButton);
 		tableLikeButton.appendChild(buttonText);
-		
-		
-		div.appendChild(table);		
+		div.appendChild(table);	
+		count = count + 1;	
 				
 	}
 }
 
+function addLikes(count, photoid){
+	var user = getCurrentUserId();
+	var userId = user.CurrentUserId;
+	//alert("UserId = "+ userId + " liked photo with ID = " + photoid + " pos = " + count);
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function () {
+		if(this.readyState == 4 && this.status == 200) {
+			var response = JSON.parse(this.responseText);
+			if(response["Success"] == "True") {
+				//alert("Record Updated Successfully!");
+			}
+			else {
+				alert("Update Failed.\nError: " + response["Error"]);
+			}
+			load();
+			document.getElementById("likeButton_" + count).disabled = true;
+		}
+	}
+	xhttp.open("POST", "feed.php", true);
+	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhttp.send("request=addlike&userId=" + userId + "&photoid=" + photoid);
+
+}
+
+function likedOrNot(photoid){
+	var user = getCurrentUserId();
+	var userId = user.CurrentUserId;
+	xhttp = new XMLHttpRequest();
+	xhttp.open("POST", "feed.php", false);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send("request=likedOrNot&userId=" + userId + "&photoid=" + photoid);
+	//alert(xhttp.responseText);
+	var likedOrNot = JSON.parse(xhttp.responseText);
+	if(typeof likedOrNot == "undefined") {
+		alert("Table not found.");
+		return false;
+	}
+	return likedOrNot;
+}
+
+function getCurrentUserId(){
+	var xhttp;
+	xhttp = new XMLHttpRequest();
+	xhttp.open("POST", "feed.php", false);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send("request=CurrentUserId");
+	//alert(xhttp.responseText);
+	var currentUserId = JSON.parse(xhttp.responseText);
+	if(typeof currentUserId == "undefined") {
+		alert("Table not found.");
+		return false;
+	}
+	return currentUserId;
+}
+
 function load() {
 	createFeedCards();
-	//getFeedData();
 }
 window.onload = load;

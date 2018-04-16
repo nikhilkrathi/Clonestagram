@@ -1,6 +1,5 @@
 var record, success;
 function follow() {
-	
 	var xhttp;
 	xhttp = new XMLHttpRequest();
 	xhttp.open("POST", "follow.php", false);

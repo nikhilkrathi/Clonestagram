@@ -99,10 +99,6 @@
         mysqli_close($db);
         ?>
     </div>
-    
-<footer class="footer">
-    <span class="text-muted">Made by Rishabh Chitlangia and Rohith Srivathsav</span>
-</footer>
 
     
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

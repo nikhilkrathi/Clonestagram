@@ -2,7 +2,7 @@
 function connectDatabase() {
     $servername = "localhost";
     $username = "root";
-    $password = "rohith=123";
+    $password = "KISHOR@cp0220";
     $dbname = "clonestagram";
     $connection = new mysqli($servername, $username, $password, $dbname);
     if ($connection->connect_error) {
