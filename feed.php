@@ -76,6 +76,19 @@ function addLikes(){
     $connection->close();
 } 
 
+function likedOrNot(){
+	$db = connectDatabase();
+	$uname = getArgument("userId");
+	$pid = getArgument("photoid");
+	$sql5 = "SELECT COUNT(*) AS likedOrNot FROM likes WHERE user_id='$uname' AND photo_id='$pid'"; 
+	$result5 = $db->query($sql5);
+	$row5 = mysqli_fetch_assoc($result5);
+	$lon = $row5['likedOrNot'];
+	echo "{\"likedOrNot\": \"$lon\"}";
+    $db->close();
+
+}
+
 $request = getArgument("request");
 switch($request) {
 	case "feedData":
@@ -86,6 +99,9 @@ switch($request) {
 		break;
 	case "addlike":
 		addLikes();
+		break;
+	case "likedOrNot":
+		likedOrNot();
 		break;
 }
 

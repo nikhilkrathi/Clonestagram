@@ -56,6 +56,10 @@ function createFeedCards(){
 		var tableDataLikeButton = document.createElement("td");
 		var tableLikeButton = document.createElement("BUTTON");
 		var buttonText = document.createTextNode("Like");
+		var liked = likedOrNot(photoid);
+		if(liked.likedOrNot == 1){
+			tableLikeButton.disabled = true;
+		}
 		tableLikeButton.setAttribute("id", "likeButton_" + count);
 		tableLikeButton.setAttribute("align", "left");
 		tableLikeButton.setAttribute("value", "LIKE");
@@ -96,6 +100,22 @@ function addLikes(count, photoid){
 	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhttp.send("request=addlike&userId=" + userId + "&photoid=" + photoid);
 
+}
+
+function likedOrNot(photoid){
+	var user = getCurrentUserId();
+	var userId = user.CurrentUserId;
+	xhttp = new XMLHttpRequest();
+	xhttp.open("POST", "feed.php", false);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send("request=likedOrNot&userId=" + userId + "&photoid=" + photoid);
+	//alert(xhttp.responseText);
+	var likedOrNot = JSON.parse(xhttp.responseText);
+	if(typeof likedOrNot == "undefined") {
+		alert("Table not found.");
+		return false;
+	}
+	return likedOrNot;
 }
 
 function getCurrentUserId(){
