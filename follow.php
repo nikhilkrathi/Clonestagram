@@ -33,6 +33,22 @@ function getFollowingData($username, $searchUsername){
     	}
 }
 
+function follow($username, $searchUsername) {
+header("Content-Type: application/JSON; charset=UTF-8");
+	$db = connectDatabase();
+	 $sql = "INSERT INTO follows(follower_id, followee_id) values((SELECT id FROM users WHERE username='$username'),(SELECT id FROM users WHERE username='$searchUsername'))";
+
+		$result = mysqli_query($db, $sql);
+		
+		if(mysqli_affected_rows($db) > 0) {
+			echo "{\"Success\": \"True\"}";
+		}
+		 else {
+		    	echo "ERROR: Not able to execute $sql. " . mysqli_error($db). '<br />'. '<br />';
+		}
+		
+		mysqli_close($db);
+}
 
 
 $request = getArgument("request");
@@ -40,8 +56,8 @@ switch($request) {
 	case "following":
 		getFollowingData($username, $searchUsername);
 		break;
-	case "":
-		followeUser();
+	case "follow":
+		follow($username, $searchUsername);
 		break;
 }
 

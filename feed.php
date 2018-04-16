@@ -48,14 +48,44 @@ function getFeedData($username){
 		$uid[] = $row3['username'];
 	}
 	
-	$output = array('username'=>$uid, 'photo_url'=>$url, 'likes'=>$count); 
+	$output = array('photoid'=>$photoid, 'username'=>$uid, 'photo_url'=>$url, 'likes'=>$count); 
 	echo json_encode($output);
 }
+
+function getCurrentUserId($username){
+	$db = connectDatabase();
+	$sql4 = "SELECT id FROM users WHERE username='$username'";
+	$result4 = $db->query($sql4);
+	$row4 = mysqli_fetch_assoc($result4);
+	$uid = $row4['id'];
+	echo "{\"CurrentUserId\": \"$uid\"}";
+}
+
+function addLikes(){
+	$connection = connectDatabase();
+	$uname = getArgument("userId");
+	$pid = getArgument("photoid");
+	
+	$sql = "INSERT INTO likes(user_id, photo_id) VALUES ('$uname','$pid')"; 
+	if ($connection->query($sql) === TRUE) {
+            echo "{\"Success\": \"True\"}";
+        } 
+    else {
+        echo "{\"Success\": \"False\",\"Error\": \"$connection->error\"}";
+    }
+    $connection->close();
+} 
 
 $request = getArgument("request");
 switch($request) {
 	case "feedData":
 		getFeedData($username);
+		break;
+	case "CurrentUserId":
+		getCurrentUserId($username);
+		break;
+	case "addlike":
+		addLikes();
 		break;
 }
 

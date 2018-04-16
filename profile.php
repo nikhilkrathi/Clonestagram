@@ -183,6 +183,8 @@
 				$row = mysqli_fetch_array($result);
 				$searchUserid = $row['id'];
                  $_SESSION[searchUserid] = $searchUserid;
+			$searchUserid = $row['id'];
+                 $_SESSION['searchUserid'] = $searchUserid;
                  $_SESSION['searchUsername'] = $usearch;
                  $_SESSION['searchFullname'] = $row['fullname'];
                 header("Location: userprofile.php");
